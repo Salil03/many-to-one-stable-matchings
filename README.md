@@ -12,3 +12,4 @@ The table on the left shows the preferences for the canonical one-to-one instanc
 Example given in Gusfield and Irving's book:
 
 
+![example](https://github.com/Salil03/many-to-one-stable-matchings/assets/32109637/ed22a47a-d7d2-4005-a651-2455f84334a8)
