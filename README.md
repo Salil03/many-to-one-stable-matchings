@@ -1,6 +1,6 @@
 # Lattice of Stable Matchings for the College-Admissions Problem
 
-This tool generates the lattice of stable matchings for the College-Admissions Problem. This code is a slight modification of [Simon Mauras's excellent repo] for the stable marriage problem.
+This tool generates the lattice of stable matchings for the College-Admissions Problem. This code is a slight modification of [Simon Mauras's repo](https://github.com/simon-mauras/stable-matchings/tree/master/Lattice) for the stable marriage problem. Check it out for more such tools.
 
 The table on the left shows the preferences for the canonical one-to-one instance. The graph in the middle shows the set of rotations and the graph on the right is the lattice of stable matchings arranged from firm-optimal(top) to worker-optimal(bottom).
 
