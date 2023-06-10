@@ -1,0 +1,51 @@
+digraph matchings {
+0[style="filled",id="m0", label="f1: w9, w11, w5, w4, 
+f2: w7, 
+f3: w6, w8, w3, 
+f4: w1, w2, 
+f5: w10, 
+"]
+0 -> 1;
+1[style="filled",id="m1", label="f1: w9, w5, w4, w10, 
+f2: w7, 
+f3: w6, w8, w3, 
+f4: w2, w11, 
+f5: w1, 
+"]
+1 -> 2;
+2[style="filled",id="m2", label="f1: w9, w5, w10, w8, 
+f2: w7, 
+f3: w6, w3, w2, 
+f4: w11, w4, 
+f5: w1, 
+"]
+2 -> 3;
+3[style="filled",id="m3", label="f1: w5, w10, w8, w1, 
+f2: w7, 
+f3: w6, w2, w4, 
+f4: w11, w9, 
+f5: w3, 
+"]
+3 -> 4;
+3 -> 5;
+4[style="filled",id="m4", label="f1: w5, w10, w8, w2, 
+f2: w7, 
+f3: w6, w4, w1, 
+f4: w11, w9, 
+f5: w3, 
+"]
+4 -> 6;
+5[style="filled",id="m5", label="f1: w5, w10, w8, w1, 
+f2: w7, 
+f3: w6, w2, w4, 
+f4: w9, w3, 
+f5: w11, 
+"]
+5 -> 6;
+6[style="filled",id="m6", label="f1: w5, w10, w8, w2, 
+f2: w7, 
+f3: w6, w4, w1, 
+f4: w9, w3, 
+f5: w11, 
+"]
+}
