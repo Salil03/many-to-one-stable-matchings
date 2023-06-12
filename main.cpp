@@ -17,25 +17,56 @@ const bool randomness = false;
 int main()
 {
   vvi prefMen, prefWomen;
-  vvi preffirm =
-      {{3, 7, 9, 11, 5, 4, 10, 8, 6, 1, 2},
-       {5, 7, 10, 6, 8, 2, 3, 11},
-       {11, 6, 8, 3, 2, 4, 7, 1, 10},
-       {10, 1, 2, 11, 4, 9, 5, 3, 6, 8},
-       {2, 4, 10, 7, 6, 1, 8, 3, 11, 9}};
-  vvi prefworker =
-      {{3, 1, 5, 4},
-       {1, 3, 4, 2, 5},
-       {4, 5, 3, 1, 2},
-       {3, 4, 1, 5},
-       {1, 4, 2},
-       {4, 3, 2, 1, 5},
-       {2, 5, 1, 3},
-       {1, 3, 2, 5, 4},
-       {4, 1, 5},
-       {3, 1, 5, 2, 4},
-       {5, 4, 1, 3, 2}};
-  vi capacity = {4, 3, 3, 2, 1};
+  vvi preffirm, prefworker;
+  vi capacity;
+  ifstream F;
+
+  F.open("instance_raw.txt");
+  int n, m;
+  F >> n >> m;
+
+  for(int i = 0; i < n; i++){
+
+    preffirm.push_back(vi());
+    for(int j = 0; j < m; j++){
+      int a; F >> a;
+      if(a != -1) preffirm[i].push_back(a);
+    }
+  }
+  F >> m;
+  for(int i = 0; i < m; i++){
+
+    prefworker.push_back(vi());
+    for(int j = 0; j < n; j++){
+      int a; F >> a;
+      if(a != -1) prefworker[i].push_back(a);
+    }
+  }
+  for(int i = 0; i < n; i++){
+    int a; F >> a;
+    capacity.push_back(a);
+  }
+  F.close();
+
+  // vvi preffirm =
+  //     {{3, 7, 9, 11, 5, 4, 10, 8, 6, 1, 2},
+  //      {5, 7, 10, 6, 8, 2, 3, 11},
+  //      {11, 6, 8, 3, 2, 4, 7, 1, 10},
+  //      {10, 1, 2, 11, 4, 9, 5, 3, 6, 8},
+  //      {2, 4, 10, 7, 6, 1, 8, 3, 11, 9}};
+  // vvi prefworker =
+  //     {{3, 1, 5, 4},
+  //      {1, 3, 4, 2, 5},
+  //      {4, 5, 3, 1, 2},
+  //      {3, 4, 1, 5},
+  //      {1, 4, 2},
+  //      {4, 3, 2, 1, 5},
+  //      {2, 5, 1, 3},
+  //      {1, 3, 2, 5, 4},
+  //      {4, 1, 5},
+  //      {3, 1, 5, 2, 4},
+  //      {5, 4, 1, 3, 2}};
+  // vi capacity = {4, 3, 3, 2, 1};
   for (int f = 0; f < (int)preffirm.size(); f++)
   {
     for (int i = 0; i < (int)preffirm[f].size(); i++)

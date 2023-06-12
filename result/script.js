@@ -1,6 +1,6 @@
 var matchings = [];
 var rotations = [];
-var preferences = [[],[]];
+var preferences = [[], []];
 var currentMatching;
 
 var color_active = "steelblue"
@@ -13,13 +13,13 @@ function fill(group, color) {
 function callback_matching(idMatching) {
   // change the current matching
   var idRotation;
-  for (idRotation=1; idRotation<nbRotations; idRotation++) {
+  for (idRotation = 1; idRotation < nbRotations; idRotation++) {
     var color = downset[idMatching][idRotation] ? color_active : color_inactive;
     fill(rotations[idRotation], color);
   }
   var idMan, idWoman, color;
-  for (idMan=0; idMan<nbMen; idMan++) {
-    for (idWoman=0; idWoman<nbWomen; idWoman++) {
+  for (idMan = 0; idMan < nbMen; idMan++) {
+    for (idWoman = 0; idWoman < nbWomen; idWoman++) {
       color = stableM[idMan][idWoman] == -1 ? "white" : color_inactive;
       if (idWoman == prefM[idMatching][idMan]) color = color_active;
       preferences[0][idMan][idWoman].style.backgroundColor = color;
@@ -61,10 +61,10 @@ function callback_woman(idWoman, idProp) {
 }
 
 function callback_keydown(e) {
-  if (e.keyCode == 39 && currentMatching+1 < nbMatchings)
-    callback_matching(currentMatching+1);
+  if (e.keyCode == 39 && currentMatching + 1 < nbMatchings)
+    callback_matching(currentMatching + 1);
   if (e.keyCode == 37 && currentMatching > 0)
-    callback_matching(currentMatching-1);
+    callback_matching(currentMatching - 1);
 }
 
 function init() {
@@ -72,36 +72,68 @@ function init() {
   var m = document.getElementById("matchings").contentDocument;
   var r = document.getElementById("rotations").contentDocument;
   var p = document.getElementById("preferences").contentDocument;
-  for (idMatching=0; idMatching<nbMatchings; idMatching++)
-  {
+  for (idMatching = 0; idMatching < nbMatchings; idMatching++) {
     matchings[idMatching] = m.getElementById("m" + idMatching);
-    matchings[idMatching].onclick = function(id)
-    {return function() { callback_matching(id);}}(idMatching);
+    matchings[idMatching].onclick = function (id) { return function () { callback_matching(id); } }(idMatching);
     fill(matchings[idMatching], color_inactive);
   }
-  for (idRotation=1; idRotation<nbRotations; idRotation++) {
+  for (idRotation = 1; idRotation < nbRotations; idRotation++) {
     rotations[idRotation] = r.getElementById("r" + idRotation);
-    rotations[idRotation].onclick = function(id)
-    {return function() { callback_rotation(id);}}(idRotation);
+    rotations[idRotation].onclick = function (id) { return function () { callback_rotation(id); } }(idRotation);
     fill(rotations[idRotation], color_inactive);
   }
-  for (idMan=0; idMan<nbMen; idMan++) {
+  for (idMan = 0; idMan < nbMen; idMan++) {
     preferences[0][idMan] = []
-    for (idProp=0; idProp<nbWomen; idProp++) {
+    for (idProp = 0; idProp < nbWomen; idProp++) {
       var id = "pM" + idMan + "-" + idProp;
       preferences[0][idMan][idProp] = p.getElementById(id);
-      preferences[0][idMan][idProp].onclick = function (idM, idP)
-      {return function() { callback_man(idM, idP);}}(idMan, idProp);
+      preferences[0][idMan][idProp].onclick = function (idM, idP) { return function () { callback_man(idM, idP); } }(idMan, idProp);
     }
   }
-  for (idWoman=0; idWoman<nbWomen; idWoman++) {
+  for (idWoman = 0; idWoman < nbWomen; idWoman++) {
     preferences[1][idWoman] = []
-    for (idProp=0; idProp<nbMen; idProp++) {
+    for (idProp = 0; idProp < nbMen; idProp++) {
       var id = "pW" + idWoman + "-" + idProp;
       preferences[1][idWoman][idProp] = p.getElementById(id);
-      preferences[1][idWoman][idProp].onclick = function (idW, idP)
-      {return function() { callback_woman(idW, idP);}}(idWoman, idProp);
+      preferences[1][idWoman][idProp].onclick = function (idW, idP) { return function () { callback_woman(idW, idP); } }(idWoman, idProp);
     }
+  }
+
+  function delCap(id) {
+    var host = window.location.origin;
+    fetch(host, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify({
+        "method": "POST",
+        "id": id,
+        "change": -1
+      })
+    }).then((resp) => {
+      console.log(resp);
+      window.location.reload();
+    })
+  }
+  function addCap(id) {
+    var host = window.location.origin;
+    fetch(host, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify({
+        "method": "POST",
+        "id": id,
+        "change": -1
+      })
+    }).then((resp) => {
+      console.log(resp);
+      window.location.reload();
+    })
   }
   currentMatching = 0;
   callback_matching(0);

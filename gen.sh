@@ -1,6 +1,6 @@
 FOLDER="result"
-mkdir -p $FOLDER
-cd $FOLDER
+# mkdir -p $FOLDER
+# cd $FOLDER
 cp ../template.html index.html
 g++ -std=c++17 -Wall -Wextra -O2 ../main.cpp -o main
 ./main
