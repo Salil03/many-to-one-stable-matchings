@@ -146,7 +146,7 @@ class Instance():
     
     def compile(self):
         instance.printRaw()
-        subp.run("../gen.sh", shell=True)
+        subp.run("../update.sh", shell=True)
 
 
 class RequestHandler(SimpleHTTPRequestHandler):
